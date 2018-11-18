@@ -6,6 +6,10 @@ describe 'colorizer' do
     end
   end
 
+  it "can be without color" do
+    MotionPrint::Colorizer.send(:none, 'RubyMotion Rocks!').should == "RubyMotion Rocks!"
+  end
+
   it "includes the passed value as a part of the colorized string" do
     MotionPrint::Colorizer.send(:blue, 'RubyMotion Rocks!').should == "\e[1;34mRubyMotion Rocks!\e[0m"
   end

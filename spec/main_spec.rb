@@ -21,15 +21,19 @@ describe "motion_print gem" do
     # Strings
     MotionPrint.logger("String", force_color: :blue).should == "\e[1;34m\"String\"\e[0m"
     MotionPrint.logger("String", force_color: :red).should == "\e[1;31m\"String\"\e[0m"
+    MotionPrint.logger("String", force_color: :none).should == "\"String\""
 
     # Arrays
     MotionPrint.logger([1, '2'], force_color: :purple).should == "[\n  \e[1;35m1\e[0m,\n  \e[1;35m\"2\"\e[0m\n]"
+    MotionPrint.logger([1, '2'], force_color: :none).should == "[\n  1,\n  \"2\"\n]"
 
     # Hashes
     MotionPrint.logger({a: 'b', c: :d}, force_color: :white).should == "{\n  \e[1;37m:a\e[0m  \e[1;37m => \e[0m\e[1;37m\"b\"\e[0m,\n  \e[1;37m:c\e[0m  \e[1;37m => \e[0m\e[1;37m:d\e[0m\n}"
+    MotionPrint.logger({a: 'b', c: :d}, force_color: :none).should == "{\n  :a   => \"b\",\n  :c   => :d\n}"
 
     # Symbols
     MotionPrint.logger(:a_symbol, force_color: :green).should == "\e[1;32m:a_symbol\e[0m"
+    MotionPrint.logger(:a_symbol, force_color: :none).should == ":a_symbol"
   end
 
   it 'aligns strings properly' do

@@ -11,6 +11,10 @@ module MotionPrint
       end
     end
 
+    def none(str)
+      str
+    end
+
     alias :black :grayish
     alias :pale  :whiteish
   end
