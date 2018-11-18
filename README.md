@@ -98,6 +98,25 @@ class CDQManagedObject
 end
 ```
 
+## Using NSLog
+
+Normally, `mp` will not print output when the app is run on the device. To enable output via NSLog, use `MotionPrint.enable_nslog`, or the `use_nslog: true` option:
+
+```ruby
+def application(application, didFinishLaunchingWithOptions:launchOptions)
+  #...
+  MotionPrint.enable_nslog
+  #...
+
+  # output to NSLog only when you want, like when an error occurs
+  if some_error_occurred
+    mp __method__, use_nslog: true, force_color: :none
+    mp caller, use_nslog: true, force_color: none
+    mp result, use_nslog: true, force_color: none
+  end
+end
+```
+
 ## Fancy Debugging Tips
 
 Ruby comes with some great methods for method introspection.  These methods look great in motion_print.
@@ -111,6 +130,13 @@ You can force a color of the output if you want like this:
 ```ruby
 mp "My String", force_color: :blue # This is usually yellow
 ```
+
+or don't output any color:
+
+```ruby
+mp "My String", force_color: :none # This is usually yellow
+```
+
 
 ## Roadmap
 

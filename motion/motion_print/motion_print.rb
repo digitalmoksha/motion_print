@@ -111,7 +111,7 @@ module MotionPrint
 
       width  = data.map { |ivar_str, | ivar_str.size }.max || 0
       width += indent_by(options[:indent_level]).length
-      
+
       data.each do |ivar_str, ivar|
         out << (align(ivar_str, width, options[:indent_level]) << hash_rocket(options[:force_color]) <<
                 logger(object.instance_variable_get(ivar), options.merge({ivar: false, force_color: specific_color(:pale, options)})))
@@ -135,7 +135,7 @@ module MotionPrint
     def decide_color(object)
       colors[object.class.to_s.downcase.to_sym] || :white
     end
-    
+
     def specific_color(color, options)
       options[:force_color] || color
     end
@@ -172,6 +172,18 @@ module MotionPrint
 
     def align(value, width, indent = 1)
       (indent_by(indent) + value.ljust(width)).chomp
+    end
+
+    def enable_nslog
+      @nslog_enabled = true
+    end
+
+    def disable_nslog
+      @nslog_enabled = false
+    end
+
+    def nslog_enabled?
+      !@nslog_enabled.nil?
     end
   end
 end
