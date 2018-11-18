@@ -100,7 +100,7 @@ end
 
 ## Using NSLog
 
-Normally, `mp` will not print output when the app is run on the device. To enable output via NSLog, use `MotionPrint.enable_nslog`, or the `use_nslog: true` option:
+Normally, `mp` will not print output when the app is run on the device. To enable output via NSLog, use `MotionPrint.enable_nslog`, or the `nslog: true` option:
 
 ```ruby
 def application(application, didFinishLaunchingWithOptions:launchOptions)
@@ -110,9 +110,9 @@ def application(application, didFinishLaunchingWithOptions:launchOptions)
 
   # output to NSLog only when you want, like when an error occurs
   if some_error_occurred
-    mp __method__, use_nslog: true, force_color: :none
-    mp caller, use_nslog: true, force_color: none
-    mp result, use_nslog: true, force_color: none
+    mp __method__, nslog: true, force_color: :none
+    mp caller, nslog: true, force_color: none
+    mp result, nslog: true, force_color: none
   end
 end
 ```
